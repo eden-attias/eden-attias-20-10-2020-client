@@ -9,7 +9,7 @@ class ClientCookies {
 		expirationTime.setHours(expirationTime.getHours() + 1);
 
 		var loginCookie = cookies.get('Login');
-		if (!loginCookie || (!!loginCookie && new Date().getTime() > new Date(loginCookie.expirationTime).getTime())) {
+		if (!loginCookie || (loginCookie && new Date().getTime() > new Date(loginCookie.expirationTime).getTime())) {
 			cookies.set(
 				'Login',
 				{
@@ -24,7 +24,7 @@ class ClientCookies {
 	public getLoginCookieData(): User | null {
 		const cookies = new Cookies();
 		var cookie = cookies.get('Login');
-		if (!cookie || (!!cookie && new Date().getTime() > new Date(cookie.expirationTime).getTime())) {
+		if (!cookie || (cookie && new Date().getTime() > new Date(cookie.expirationTime).getTime())) {
 			return null;
 		} else {
 			return {
